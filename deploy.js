@@ -62,10 +62,18 @@ function stopRemoteServices() {
   });
 }
 
+function makeNewProject() {
+  return ssh.execCommand(
+      'mkdir riot-express-todo-list', {
+          cwd: '/home/ubuntu'
+      });
+}
+
 // updates the project source on the server
 function updateRemoteApp() {
+  makeNewProject();
   return ssh.execCommand(
-    'mkdir riot-express-todo-list && cp -r riot-express-todo-list-temp/* riot-express-todo-list/ && rm -rf riot-express-todo-list-temp', {
+    'cp -r riot-express-todo-list-temp/* riot-express-todo-list/ && rm -rf riot-express-todo-list-temp', {
       cwd: '/home/ubuntu'
   });
 }
